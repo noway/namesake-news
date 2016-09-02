@@ -6,6 +6,7 @@ import * as express from "express";
 import * as path from "path";
 
 import * as indexRoute from "./routes/index";
+import * as fbLoginRoute from "./routes/fbLogin";
 
 /**
  * The server.
@@ -91,9 +92,11 @@ class Server {
 
     //create routes
     var index: indexRoute.Index = new indexRoute.Index();
+    var fbLogin: fbLoginRoute.FbLogin = new fbLoginRoute.FbLogin();
 
     //home page
     router.get("/", index.index.bind(index.index));
+    router.get("/fb-login", fbLogin.index.bind(fbLogin.index));
 
     //use router middleware
     this.app.use(router);
