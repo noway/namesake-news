@@ -73,6 +73,8 @@ class Server {
     //add static paths
     this.app.use(express.static(path.join(__dirname, "public")));
     this.app.use(express.static(path.join(__dirname, "bower_components")));
+    this.app.use(require('express-session')({ secret: '0987654321.jk', resave: true, saveUninitialized: true }));
+
     this.app.use(passport.initialize());
     this.app.use(passport.session());
 
@@ -94,7 +96,7 @@ class Server {
     passport.use(new Strategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: 'http://localhost:3000/login/facebook/return'
+        callbackURL: 'http://ftpes.azurewebsites.net:8080/login/facebook/return'
     },
     function(accessToken, refreshToken, profile, cb) {
         // In this example, the user's Facebook profile is supplied as the user
@@ -123,24 +125,19 @@ class Server {
         cb(null, obj);
     });
 
-    this.app.get('/login',
-    function(req, res){
+    this.app.get('/login', function(req, res){
         res.render('login');
     });
 
-    this.app.get('/login/facebook',
-    passport.authenticate('facebook'));
+    this.app.get('/login/facebook', passport.authenticate('facebook'));
 
-    this.app.get('/login/facebook/return', 
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
-    function(req, res) {
-        res.redirect('/');
+    this.app.get('/login/facebook/return', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
+            res.redirect('/profile');
     });
 
-    this.app.get('/profile',
-    require('connect-ensure-login').ensureLoggedIn(),
-    function(req, res){
-        res.render('profile', { user: req.user });
+    this.app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function(req, res){
+        res.send(JSON.stringify(req.user));
+        //res.render('profile', { user: req.user });
     });
 
   }

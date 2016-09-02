@@ -58,6 +58,7 @@ var Server = (function () {
         //add static paths
         this.app.use(express.static(path.join(__dirname, "public")));
         this.app.use(express.static(path.join(__dirname, "bower_components")));
+        this.app.use(require('express-session')({ secret: '0987654321.jk', resave: true, saveUninitialized: true }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
         // catch 404 and forward to error handler
@@ -76,7 +77,7 @@ var Server = (function () {
         passport.use(new Strategy({
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: 'http://localhost:3000/login/facebook/return'
+            callbackURL: 'http://ftpes.azurewebsites.net:8080/login/facebook/return'
         }, function (accessToken, refreshToken, profile, cb) {
             // In this example, the user's Facebook profile is supplied as the user
             // record.  In a production-quality application, the Facebook profile should
@@ -108,7 +109,8 @@ var Server = (function () {
             res.redirect('/');
         });
         this.app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-            res.render('profile', { user: req.user });
+            res.send(JSON.stringify(req.user));
+            //res.render('profile', { user: req.user });
         });
     };
     /**
