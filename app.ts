@@ -54,7 +54,7 @@ class Server {
   private config() {
     //configure jade
     this.app.set("views", path.join(__dirname, "views"));
-    this.app.set("view engine", "jade");
+    this.app.set("view engine", "pug");
 
     //mount logger
     //this.app.use(logger("dev"));

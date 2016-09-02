@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var ts = require('gulp-typescript');
  
 gulp.task('default', function () {
-    return gulp.src('src/**/*.ts')
+    return gulp.src('routes/**/*.ts')
         .pipe(ts({
             noImplicitAny: true,
             out: 'output.js'
