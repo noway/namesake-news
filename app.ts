@@ -136,7 +136,26 @@ class Server {
     });
 
     this.app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function(req, res){
-        res.send(JSON.stringify(req.user));
+        //res.send(JSON.stringify(req.user));
+var request = require('request');
+ 
+var options = {
+  url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q='+req.user.displayName.split(' ')[0]+'&count=10&offset=0&mkt=en-us&safeSearch=Moderate',
+  headers: {
+    'Ocp-Apim-Subscription-Key': process.env.BING_KEY
+  }
+};
+ 
+function callback(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    
+    res.send(body);
+  }
+}
+ 
+request(options, callback);
+
+
         //res.render('profile', { user: req.user });
     });
 
