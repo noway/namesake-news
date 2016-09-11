@@ -37,7 +37,6 @@ $(() => {
 
             $('.feed').highlight($('.my-name').val(),{
                 wordsOnly: true,
-                wordsBoundary: '[\\b\\W]',
                 caseSensitive: false,
             });
 

@@ -10,20 +10,22 @@ html(lang='en')
     script(src="/jquery/dist/jquery.min.js")
     script(src="/jquery-highlight/jquery.highlight.js")
     script(src="/news.js" async=true)
+    link(rel='stylesheet', href="/css/lumen/bootstrap.min.css")
   body
+
+    nav.navbar.navbar-default.navbar-static-top
+      .container-fluid.col-xs-12.col-xs-offset-0.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3.col-xl-4.col-xl-offset-4
+        ul.nav.navbar-nav
+          li.nav-item
+            a.nav-link(href='/') Home
+          li.nav-item.active
+            a.nav-link.active(href='/news/') My News 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='/about') About
     input.my-name(type='hidden', value=user.first_name)
-    .container
+    .container-fluid.col-xs-12.col-xs-offset-0.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3.col-xl-4.col-xl-offset-4
       .header.clearfix
-        nav
-          ul.nav.nav-pills.pull-xs-right
-            li.nav-item
-              a.nav-link.active(href='/news/')
-                | My News 
-                span.sr-only (current)
-            li.nav-item
-              a.nav-link(href='/') Home
-            li.nav-item
-              a.nav-link(href='/about') About
         h3.text-muted Namesake News
       .jumbotron
         h1.display-3 #{user.first_name}'s latest news
@@ -47,4 +49,4 @@ html(lang='en')
             .wInnerBall
 
       footer.footer
-        p &copy; Company 2014
+        p &copy; ftpes 2016
