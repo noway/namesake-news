@@ -8,6 +8,7 @@ $(() => {
 
     function load_name_news() {
         state = 'loading';
+        $('.loader').show();
         $.getJSON('/name-news', { offset: next }, (data: any, status: string) => {
 
             data.value.forEach(element => {
@@ -42,6 +43,7 @@ $(() => {
 
             state = 'ready';
             next += 10;
+            $('.loader').hide();
         });
     }
     load_name_news();
@@ -59,4 +61,6 @@ $(() => {
             }
 		}
 	});
+
+    $('.container-fluid').tubular({videoId: '9HTEZkTA11Q',start: 3});
 });

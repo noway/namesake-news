@@ -4,6 +4,7 @@ $(function () {
     var next = 0;
     function load_name_news() {
         state = 'loading';
+        $('.loader').show();
         $.getJSON('/name-news', { offset: next }, function (data, status) {
             data.value.forEach(function (element) {
                 var div = $('<article class="media">');
@@ -28,6 +29,7 @@ $(function () {
             });
             state = 'ready';
             next += 10;
+            $('.loader').hide();
         });
     }
     load_name_news();
@@ -43,4 +45,5 @@ $(function () {
             }
         }
     });
+    $('.container-fluid').tubular({ videoId: '9HTEZkTA11Q', start: 3 });
 });

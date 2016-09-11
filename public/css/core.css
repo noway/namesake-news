@@ -2,11 +2,22 @@
   height: 40px;
   margin: 40px auto; }
 
-.highlight {
-  background: #ffff87; }
+#tubular-container {
+  opacity: 0.3; }
 
-.media img {
-  width: 100px; }
+.highlight {
+  background: rgba(146, 146, 146, 0.42); }
+
+a {
+  color: #90baf9; }
+  a:hover {
+    color: #c5dbfc; }
+
+.media {
+  background: #4e5d6c;
+  padding: 10px; }
+  .media img {
+    vertical-align: middle; }
 
 /* Space out content a bit */
 body {
@@ -20,18 +31,19 @@ body {
 /* Custom page header */
 .header {
   padding-bottom: 1rem;
-  border-bottom: .05rem solid #e5e5e5; }
+  border-bottom: 0.05rem solid rgba(255, 255, 255, 0.4); }
   .header h3 {
     margin-top: 0;
     margin-bottom: 0;
-    line-height: 3rem; }
+    line-height: 3rem;
+    color: #ebebeb; }
 
 /* Make the masthead heading the same height as the navigation */
 /* Custom page footer */
 .footer {
   padding-top: 1.5rem;
-  color: #777;
-  border-top: .05rem solid #e5e5e5; }
+  color: #ebebeb;
+  border-top: 0.05rem solid rgba(255, 255, 255, 0.4); }
 
 /* Customize container */
 @media (min-width: 48em) {
@@ -44,7 +56,7 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: .05rem solid #e5e5e5; }
+  border-bottom: 0.05rem solid rgba(255, 255, 255, 0.4); }
   .jumbotron .btn {
     padding: .75rem 1.5rem;
     font-size: 1.5rem; }
@@ -84,7 +96,7 @@ body {
       position: absolute;
       width: 6px;
       height: 6px;
-      background: black;
+      background: white;
       left: 0px;
       top: 0px;
       border-radius: 6px; }
