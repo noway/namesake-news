@@ -9,6 +9,7 @@
     "serve-static": "registry:npm/serve-static#1.11.1+20160810053450"
   },
   "globalDependencies": {
+    "fbsdk": "registry:dt/fbsdk#0.0.0+20160809204505",
     "jquery": "registry:dt/jquery#1.10.0+20160908203239",
     "node": "registry:dt/node#6.0.0+20160831021119",
     "passport": "registry:dt/passport#0.2.0+20160720063208",

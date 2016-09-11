@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/c987b8b8b27c5ac39fa9372aa88f5ae1abedc15d/fbsdk/fbsdk.d.ts",
+    "raw": "registry:dt/fbsdk#0.0.0+20160809204505",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/c987b8b8b27c5ac39fa9372aa88f5ae1abedc15d/fbsdk/fbsdk.d.ts"
+  }
+}
