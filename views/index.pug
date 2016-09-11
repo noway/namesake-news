@@ -9,8 +9,24 @@ html(lang='en')
     link(rel='stylesheet', href="/css/core.css")
     script(src="/jquery/dist/jquery.min.js")
     script(src="/jquery-highlight/jquery.highlight.js")
-    script(src="/news.js" async=true)
+    script(src="/index.js" async=true)
     link(rel='stylesheet', href="/css/lumen/bootstrap.min.css")
+    script.
+        window.fbAsyncInit = function() {
+          FB.init({
+          appId      : '1639405896370203',
+          xfbml      : true,
+          version    : 'v2.7'
+          });
+          };
+          (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
   body
     nav.navbar.navbar-default.navbar-static-top
       .container-fluid.col-xs-12.col-xs-offset-0.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3.col-xl-4.col-xl-offset-4
@@ -30,6 +46,6 @@ html(lang='en')
         h1.display-3 Namesake News
         p.lead Find what's happening to the people with your name in news!
         p
-          a.btn.btn-lg.btn-success(href='/login', role='button') Log in with facebook
+          a.btn.btn-lg.btn-success.login-button(href='/login', role='button') Log in with facebook
       footer.footer
         p &copy; ftpes 2016
