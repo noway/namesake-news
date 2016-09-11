@@ -1,0 +1,22 @@
+{
+  "name": "namesake-news",
+  "description": "Find what people with your name are up to",
+  "main": "index.js",
+  "authors": [
+    "Way",
+    "No <noway@2ch.hk>"
+  ],
+  "license": "MIT",
+  "homepage": "http://ftpes.azurewebsites.net/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.4"
+  }
+}

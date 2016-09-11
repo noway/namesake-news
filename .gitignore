@@ -1,3 +1,4 @@
+#### node.js
 # Logs
 logs
 *.log
@@ -41,7 +42,7 @@ jspm_packages
 .node_repl_history
 
 
-
+#### typescript
 node_modules/
 built/*
 tests/cases/rwc/*
@@ -96,3 +97,12 @@ internal/
 !tests/cases/projects/projectOption/**/node_modules
 !tests/cases/projects/NodeModulesSearch/**/*
 !tests/baselines/reference/project/nodeModules*/**/*
+
+
+#### yo
+node_modules/
+bower_components/
+*.log
+
+build/
+dist/
