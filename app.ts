@@ -103,7 +103,7 @@ class Server {
     passport.use(new Strategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: 'http://ftpes.azurewebsites.net:8080/login/facebook/return',
+        callbackURL: 'http://ftpes.azurewebsites.net/login/facebook/return',
         profileFields: ['id', 'displayName', 'photos', 'email', 'first_name']
     },
     function(accessToken, refreshToken, profile, cb) {
