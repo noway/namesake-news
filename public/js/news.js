@@ -1,4 +1,4 @@
-/// <reference path="../_all.d.ts" />
+/// <reference path="../../_all.d.ts" />
 $(function () {
     var state = 'ready';
     var next = 0;
