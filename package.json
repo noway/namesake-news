@@ -18,7 +18,8 @@
     "passport-facebook": "^2.1.1",
     "pug": "^2.0.0-beta6",
     "query-string": "^4.2.3",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "debug":  "*"
   },
   "devDependencies": {
     "typescript": "^1.8.10",
