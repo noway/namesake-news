@@ -1,0 +1,15 @@
+html(lang='en')
+
+  head
+    title #{user.first_name} on the web &mdash; Namesake News
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='stylesheet', href="/bootstrap/dist/css/bootstrap.css")
+    script(src="/jquery/dist/jquery.min.js")
+    script(src="/news.js" async=true)
+
+  body
+    .jumbotron
+      h1.jumbotron-heading Namesake News
+      .jumbotron-body
+        p Just look at this unbelievalble attraction 
+        .feed

@@ -8,6 +8,7 @@
     "serve-static": "registry:npm/serve-static#1.11.1+20160810053450"
   },
   "globalDependencies": {
+    "jquery": "registry:dt/jquery#1.10.0+20160908203239",
     "node": "registry:dt/node#6.0.0+20160831021119",
     "passport": "registry:dt/passport#0.2.0+20160720063208",
     "passport-facebook": "registry:dt/passport-facebook#1.0.3+20160316155526"

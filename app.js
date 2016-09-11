@@ -7,6 +7,7 @@ var indexRoute = require("./routes/index");
 var fbLoginRoute = require("./routes/fbLogin");
 var passport = require("passport");
 var passportFacebook = require("passport-facebook");
+var request = require("request");
 var Strategy = passportFacebook.Strategy;
 /**
  * The server.
@@ -77,7 +78,8 @@ var Server = (function () {
         passport.use(new Strategy({
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: 'http://ftpes.azurewebsites.net:8080/login/facebook/return'
+            callbackURL: 'http://ftpes.azurewebsites.net:8080/login/facebook/return',
+            profileFields: ['id', 'displayName', 'photos', 'email', 'first_name']
         }, function (accessToken, refreshToken, profile, cb) {
             // In this example, the user's Facebook profile is supplied as the user
             // record.  In a production-quality application, the Facebook profile should
@@ -102,28 +104,28 @@ var Server = (function () {
             cb(null, obj);
         });
         this.app.get('/login', function (req, res) {
-            res.render('login');
+            res.redirect('/login/facebook');
         });
         this.app.get('/login/facebook', passport.authenticate('facebook'));
         this.app.get('/login/facebook/return', passport.authenticate('facebook', { failureRedirect: '/login' }), function (req, res) {
-            res.redirect('/profile');
+            res.redirect('/news');
         });
-        this.app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-            //res.send(JSON.stringify(req.user));
-            var request = require('request');
-            var options = {
-                url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=' + req.user.displayName.split(' ')[0] + '&count=10&offset=0&mkt=en-us&safeSearch=Moderate',
+        this.app.get('/name-news', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+            request({
+                url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=' + req.user._json.first_name + '&count=10&offset=0&mkt=en-us&safeSearch=Moderate',
                 headers: {
                     'Ocp-Apim-Subscription-Key': process.env.BING_KEY
                 }
-            };
-            function callback(error, response, body) {
+            }, function callback(error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    res.send(body);
+                    var data = JSON.parse(body);
+                    res.send(JSON.stringify(data));
                 }
-            }
-            request(options, callback);
-            //res.render('profile', { user: req.user });
+            });
+        });
+        this.app.get('/news', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+            //res.send(JSON.stringify(req.user));
+            res.render('news', { user: req.user._json });
         });
     };
     /**

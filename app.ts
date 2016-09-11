@@ -99,7 +99,8 @@ class Server {
     passport.use(new Strategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: 'http://ftpes.azurewebsites.net:8080/login/facebook/return'
+        callbackURL: 'http://ftpes.azurewebsites.net:8080/login/facebook/return',
+        profileFields: ['id', 'displayName', 'photos', 'email', 'first_name']
     },
     function(accessToken, refreshToken, profile, cb) {
         // In this example, the user's Facebook profile is supplied as the user
@@ -129,18 +130,19 @@ class Server {
     });
 
     this.app.get('/login', function(req, res){
-        res.render('login');
+        res.redirect('/login/facebook');
     });
 
     this.app.get('/login/facebook', passport.authenticate('facebook'));
 
     this.app.get('/login/facebook/return', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-            res.redirect('/profile');
+        res.redirect('/news');
     });
 
-    this.app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
+    this.app.get('/name-news', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
+
       request({
-        url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q='+req.user.displayName.split(' ')[0]+'&count=10&offset=0&mkt=en-us&safeSearch=Moderate',
+        url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q='+ req.user._json.first_name +'&count=10&offset=0&mkt=en-us&safeSearch=Moderate',
         headers: {
           'Ocp-Apim-Subscription-Key': process.env.BING_KEY
         }
@@ -150,8 +152,11 @@ class Server {
           res.send(JSON.stringify(data));
         }
       });
+    });
+  
+    this.app.get('/news', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
       //res.send(JSON.stringify(req.user));
-      //res.render('profile', { user: req.user });
+      res.render('news', { user: req.user._json });
     });
 
   }

@@ -10,6 +10,10 @@ var tsProjectMain = ts.createProject({
     declaration: true,
     noExternalResolve: false
 });
+var tsProjectPublic = ts.createProject({
+    declaration: true,
+    noExternalResolve: false
+});
  
 gulp.task('scripts', function() {
     var tsResult = gulp.src('routes/*.ts')
@@ -30,11 +34,23 @@ gulp.task('main', function() {
     ]);
 });
  
+gulp.task('public', function() {
+    var tsResult = gulp.src('public/*.ts')
+        .pipe(ts(tsProjectPublic));
+ 
+    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations are done. 
+        tsResult.dts.pipe(gulp.dest('public/defs')),
+        tsResult.js.pipe(gulp.dest('public/'))
+    ]);
+});
 gulp.task('watch', ['scripts'], function() {
     gulp.watch('routes/*.ts', ['scripts']);
 });
 gulp.task('watch', ['main'], function() {
     gulp.watch('routes/*.ts', ['main']);
 });
+gulp.task('watch', ['public'], function() {
+    gulp.watch('public/*.ts', ['public']);
+});
 
-gulp.task('default', ['scripts','main']);
+gulp.task('default', ['scripts','main','public']);
