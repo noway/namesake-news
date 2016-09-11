@@ -104,4 +104,3 @@ node_modules/
 *.log
 
 build/
-dist/
