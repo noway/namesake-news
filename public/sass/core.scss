@@ -1,39 +1,36 @@
 .windows8 {
+  $start-delay: 0.153s;
+  $delay-deriative: 0.27s;
+  $period: 3.7325s;
+  $loader-diameter: 32px;
+  $ball-diameter: 30px;
+  $inner-ball-diameter: 6px;
+
   position: relative;
-  width: 78px;
-  height: 78px;
+  width: $loader-diameter;
+  height: $loader-diameter;
   margin: auto;
   .wBall {
     position: absolute;
-    width: 74px;
-    height: 74px;
+    width: $ball-diameter;
+    height: $ball-diameter;
     opacity: 0;
     transform: rotate(225deg);
-    animation: orbit 6.96s infinite;
+    animation: orbit $period infinite;
     .wInnerBall {
       position: absolute;
-      width: 10px;
-      height: 10px;
+      width: $inner-ball-diameter;
+      height: $inner-ball-diameter;
       background: rgb(0, 0, 0);
       left: 0px;
       top: 0px;
-      border-radius: 10px;
+      border-radius: $inner-ball-diameter;
     }
   }
-  #wBall_1 {
-    animation-delay: 1.52s;
-  }
-  #wBall_2 {
-    animation-delay: 0.3s;
-  }
-  #wBall_3 {
-    animation-delay: 0.61s;
-  }
-  #wBall_4 {
-    animation-delay: 0.91s;
-  }
-  #wBall_5 {
-    animation-delay: 1.22s;
+  @for $i from 1 through 5 {
+    #wBall_#{$i} {
+      animation-delay: $start-delay + $delay-deriative * ($i - 1);
+    }
   }
 }
 
@@ -66,21 +63,21 @@
     origin: 30%;
   }
 
-  70% {
+  66% {
     opacity: 1;
     transform: rotate(770deg);
     animation-timing-function: ease-out;
     origin: 39%;
   }
 
-  75% {
+  70% {
     opacity: 1;
     transform: rotate(900deg);
     animation-timing-function: ease-out;
     origin: 70%;
   }
 
-  76% {
+  71% {
     opacity: 0;
     transform: rotate(900deg);
   }

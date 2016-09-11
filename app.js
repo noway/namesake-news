@@ -7,8 +7,6 @@ var indexRoute = require("./routes/index");
 var fbLoginRoute = require("./routes/fbLogin");
 var passport = require("passport");
 var passportFacebook = require("passport-facebook");
-var request = require("request");
-var queryString = require("query-string");
 //const queryString = require('query-string');
 var Strategy = passportFacebook.Strategy;
 /**
@@ -113,20 +111,21 @@ var Server = (function () {
             res.redirect('/news');
         });
         this.app.get('/name-news', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-            request({
-                url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=' + req.user._json.first_name + '&count=10&offset=' + req.query.offset + '&mkt=en-us&safeSearch=Moderate',
-                headers: {
-                    'Ocp-Apim-Subscription-Key': process.env.BING_KEY
-                }
-            }, function callback(error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    var data = JSON.parse(body);
-                    for (var i = 0; i < data.value.length; i++) {
-                        data.value[i].url = queryString.parse(data.value[i].url).r;
+            /*
+                  request({
+                    url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q='+ req.user._json.first_name +'&count=10&offset='+req.query.offset+'&mkt=en-us&safeSearch=Moderate',
+                    headers: {
+                      'Ocp-Apim-Subscription-Key': process.env.BING_KEY
                     }
-                    res.send(JSON.stringify(data));
-                }
-            });
+                  }, function callback(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                      let data: any = JSON.parse(body);
+                      for (var i = 0; i < data.value.length; i++) {
+                        data.value[i].url = queryString.parse(data.value[i].url).r;
+                      }
+                      res.send(JSON.stringify(data));
+                    }
+                  });*/
         });
         this.app.get('/news', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
             //res.send(JSON.stringify(req.user));

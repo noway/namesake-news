@@ -1,9 +1,10 @@
 /// <reference path="../_all.d.ts" />
 $(function () {
     var state = 'ready';
+    var next = 0;
     function load_name_news() {
         state = 'loading';
-        $.getJSON('/name-news', function (data, status) {
+        $.getJSON('/name-news', { offset: next }, function (data, status) {
             data.value.forEach(function (element) {
                 var div = $('<div>');
                 var anchor = $('<a>');
@@ -19,30 +20,18 @@ $(function () {
                 div.append(anchor);
                 div.append(text);
                 $('.feed').append(div);
-                state = 'ready';
             });
+            state = 'ready';
+            next += 10;
         });
     }
     load_name_news();
     var win = $(window);
     var doc = $(document);
-    var next = 0;
     // Each time the user scrolls
     win.scroll(function () {
         // Vertical end reached?
-        /*
-        if (doc.height() - win.height() == win.scrollTop()) {
-            // New row
-            var tr = $('<tr />').append($('<th />')).appendTo($('#spreadsheet'));
-
-            // Current number of columns to create
-            var n_cols = $('#spreadsheet tr:first-child th').length;
-            for (var i = 0; i < n_cols; ++i)
-                tr.append($('<td />'));
-        }
-        */
-        // Horizontal end reached?
-        if (doc.width() - win.width() == win.scrollLeft()) {
+        if (doc.height() - window.innerHeight == win.scrollTop()) {
             // New column in the heading row
             if (state == 'ready') {
                 load_name_news();
