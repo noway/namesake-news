@@ -14,6 +14,8 @@ import * as passportFacebook from "passport-facebook";
 import * as request from "request";
 import * as queryString from "query-string";
 
+import * as pug from "pug";
+
 //const queryString = require('query-string');
 
 var Strategy: typeof passportFacebook.Strategy = passportFacebook.Strategy;
@@ -160,7 +162,9 @@ class Server {
   
     this.app.get('/news', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
       //res.send(JSON.stringify(req.user));
-      res.render('news', { user: req.user._json });
+      res.render('news', { 
+        user: req.user._json, 
+      });
     });
 
   }

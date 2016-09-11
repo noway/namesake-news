@@ -6,20 +6,21 @@ $(function () {
         state = 'loading';
         $.getJSON('/name-news', { offset: next }, function (data, status) {
             data.value.forEach(function (element) {
-                var div = $('<div>');
-                var anchor = $('<a>');
-                var img = $('<img>');
-                var text = $('<p>');
-                anchor.html(element.name);
-                anchor.attr('href', element.url);
+                var div = $('<article class="media">');
+                var left = $('<div class="media-left"><a><img/></a></div>');
+                var body = $('<div class="media-body"><h4 class="media-header"><a></a></h4><p></p></div>');
+                $('a', body).html(element.name);
+                $('a', body).attr('href', element.url);
+                $('a', left).attr('href', element.url);
                 if (typeof element.image != 'undefined') {
-                    img.attr('src', element.image.thumbnail.contentUrl);
+                    $('img', left).attr('src', element.image.thumbnail.contentUrl);
                 }
-                text.html(element.description);
-                div.append(img);
-                div.append(anchor);
-                div.append(text);
+                $('p', body).html(element.description);
+                div.append(left);
+                div.append(body);
+                div.hide();
                 $('.feed').append(div);
+                div.slideDown();
             });
             state = 'ready';
             next += 10;

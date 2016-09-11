@@ -1,3 +1,10 @@
+.loader {
+  height: 40px;
+  margin: 40px auto; }
+
+.media img {
+  width: 100px; }
+
 .windows8 {
   position: relative;
   width: 32px;

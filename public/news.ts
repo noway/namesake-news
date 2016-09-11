@@ -9,24 +9,27 @@ $(() => {
 
             data.value.forEach(element => {
 
-                let div = $('<div>');
+                let div = $('<article class="media">');
+                let left = $('<div class="media-left"><a><img/></a></div>');
+                let body = $('<div class="media-body"><h4 class="media-header"><a></a></h4><p></p></div>');
 
-                let anchor = $('<a>');
-                let img = $('<img>');
-                let text = $('<p>');
+                $('a', body).html(element.name);
+                $('a', body).attr('href', element.url);
+                $('a', left).attr('href', element.url);
 
-                anchor.html(element.name);
-                anchor.attr('href', element.url);
                 if (typeof element.image != 'undefined') {
-                    img.attr('src', element.image.thumbnail.contentUrl);
+                    $('img', left).attr('src', element.image.thumbnail.contentUrl);
                 }
-                text.html(element.description);
+                $('p', body).html(element.description);
 
-                div.append(img);
-                div.append(anchor);
-                div.append(text);
+                div.append(left);
+                div.append(body);
+
+                div.hide();
+
                 $('.feed').append(div);
 
+                div.slideDown();
             });
 
             state = 'ready';
