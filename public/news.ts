@@ -3,6 +3,9 @@
 $(() => {
     var state = 'ready';
     var next = 0;
+    
+    
+
     function load_name_news() {
         state = 'loading';
         $.getJSON('/name-news', { offset: next }, (data: any, status: string) => {
@@ -30,6 +33,12 @@ $(() => {
                 $('.feed').append(div);
 
                 div.slideDown();
+            });
+
+            $('.feed').highlight($('.my-name').val(),{
+                wordsOnly: true,
+                wordsBoundary: '[\\b\\W]',
+                caseSensitive: true,
             });
 
             state = 'ready';

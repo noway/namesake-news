@@ -6,10 +6,10 @@ html(lang='en')
     link(rel='stylesheet', href="/bootstrap/dist/css/bootstrap.css")
     link(rel='stylesheet', href="/css/core.css")
     script(src="/jquery/dist/jquery.min.js")
+    script(src="/jquery-highlight/jquery.highlight.js")
     script(src="/news.js" async=true)
-    script !{news_article}
-
   body
+    input.my-name(type='hidden', value=user.first_name)
     .jumbotron
       h1.jumbotron-heading Namesake News
       .jumbotron-body

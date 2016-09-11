@@ -22,6 +22,11 @@ $(function () {
                 $('.feed').append(div);
                 div.slideDown();
             });
+            $('.feed').highlight($('.my-name').val(), {
+                wordsOnly: true,
+                wordsBoundary: '[\\b\\W]',
+                caseSensitive: true
+            });
             state = 'ready';
             next += 10;
         });
