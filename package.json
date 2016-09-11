@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./index.js"
   },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "author": "Way, No <noway@2ch.hk>",
   "license": "MIT",
   "dependencies": {
