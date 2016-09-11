@@ -12,44 +12,27 @@ html(lang='en')
 
     script(src="/jquery/dist/jquery.min.js")
     script(src="/jquery-tubular/js/jquery.tubular.1.0.js")
-    script(src="/jquery-highlight/jquery.highlight.js")
     script(src="/index.js" async=true)
-
-    script.
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1639405896370203',
-          xfbml      : true,
-          version    : 'v2.7'
-        });
-      };
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
 
   body
     nav.navbar.navbar-default.navbar-static-top
       .container-fluid.col-xs-12.col-xs-offset-0.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3.col-xl-4.col-xl-offset-4
         ul.nav.navbar-nav
-          li.nav-item.active
-            a.nav-link.active(href='/') Home
-              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='/') Home
           li.nav-item
             a.nav-link(href='/news/') My News 
-          li.nav-item
-            a.nav-link(href='/about') About
+          li.nav-item.active
+            a.nav-link.active(href='/about') About
+              span.sr-only (current)
     .container-fluid.col-xs-12.col-xs-offset-0.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.col-lg-6.col-lg-offset-3.col-xl-4.col-xl-offset-4
       .header.clearfix
 
         h3.text-muted Namesake News
       .jumbotron
-        h1.display-3 Namesake News
-        p.lead Find what's happening to the people with your name in news!
-        p
-          a.btn.btn-lg.btn-success.login-button(href='/login', role='button') Log in with facebook
+        p A miniature 
+          b OmniDatum 
+          | project
+        p &copy; ftpes
       footer.footer
         p &copy; OmniDatum 2016

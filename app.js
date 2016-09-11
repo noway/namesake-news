@@ -134,6 +134,10 @@ var Server = (function () {
                 user: req.user._json
             });
         });
+        this.app.get('/about', function (req, res) {
+            //res.send(JSON.stringify(req.user));
+            res.render('about');
+        });
     };
     /**
      * Configure routes
