@@ -11,6 +11,9 @@ import * as fbLoginRoute from "./routes/fbLogin";
 import * as passport from "passport";
 import * as passportFacebook from "passport-facebook";
 
+import * as request from "request";
+
+
 var Strategy: typeof passportFacebook.Strategy = passportFacebook.Strategy;
 /**
  * The server.
@@ -135,28 +138,20 @@ class Server {
             res.redirect('/profile');
     });
 
-    this.app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function(req, res){
-        //res.send(JSON.stringify(req.user));
-var request = require('request');
- 
-var options = {
-  url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q='+req.user.displayName.split(' ')[0]+'&count=10&offset=0&mkt=en-us&safeSearch=Moderate',
-  headers: {
-    'Ocp-Apim-Subscription-Key': process.env.BING_KEY
-  }
-};
- 
-function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    
-    res.send(body);
-  }
-}
- 
-request(options, callback);
-
-
-        //res.render('profile', { user: req.user });
+    this.app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), function(req, res) {
+      request({
+        url: 'https://api.cognitive.microsoft.com/bing/v5.0/news/search?q='+req.user.displayName.split(' ')[0]+'&count=10&offset=0&mkt=en-us&safeSearch=Moderate',
+        headers: {
+          'Ocp-Apim-Subscription-Key': process.env.BING_KEY
+        }
+      }, function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          let data: any = JSON.parse(body);
+          res.send(JSON.stringify(data));
+        }
+      });
+      //res.send(JSON.stringify(req.user));
+      //res.render('profile', { user: req.user });
     });
 
   }
