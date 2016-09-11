@@ -11,6 +11,7 @@
     "jquery": "registry:dt/jquery#1.10.0+20160908203239",
     "node": "registry:dt/node#6.0.0+20160831021119",
     "passport": "registry:dt/passport#0.2.0+20160720063208",
-    "passport-facebook": "registry:dt/passport-facebook#1.0.3+20160316155526"
+    "passport-facebook": "registry:dt/passport-facebook#1.0.3+20160316155526",
+    "query-string": "registry:dt/query-string#3.0.0+20160331065456"
   }
 }
