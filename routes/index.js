@@ -7,7 +7,9 @@ var Route;
         }
         Index.prototype.index = function (req, res, next) {
             //render page
-            res.render("index");
+            res.render("index", {
+                client_id: process.env.CLIENT_ID
+            });
         };
         return Index;
     }());

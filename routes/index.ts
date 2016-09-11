@@ -9,7 +9,9 @@ module Route {
 
     public index(req: express.Request, res: express.Response, next: express.NextFunction) {
       //render page
-      res.render("index");
+      res.render("index", { 
+        client_id: process.env.CLIENT_ID, 
+      });
     }
   }
 }
