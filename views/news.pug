@@ -1,7 +1,9 @@
+doctype html(lang='en')
 html(lang='en')
-
   head
     title #{user.first_name} on the web &mdash; Namesake News
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
     link(rel='stylesheet', href="/bootstrap/dist/css/bootstrap.css")
     link(rel='stylesheet', href="/css/core.css")
@@ -10,24 +12,39 @@ html(lang='en')
     script(src="/news.js" async=true)
   body
     input.my-name(type='hidden', value=user.first_name)
-    .jumbotron
-      h1.jumbotron-heading Namesake News
-      .jumbotron-body
-        p Just look at this unbelievalble attraction 
-    .feed.container-fluid
-    .loader
-      .windows8
-        #wBall_1.wBall
-          .wInnerBall
-        | &#x9;
-        #wBall_2.wBall
-          .wInnerBall
-        | &#x9;
-        #wBall_3.wBall
-          .wInnerBall
-        | &#x9;
-        #wBall_4.wBall
-          .wInnerBall
-        | &#x9;
-        #wBall_5.wBall
-          .wInnerBall
+    .container
+      .header.clearfix
+        nav
+          ul.nav.nav-pills.pull-xs-right
+            li.nav-item
+              a.nav-link.active(href='/news/')
+                | My News 
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='/') Home
+            li.nav-item
+              a.nav-link(href='/about') About
+        h3.text-muted Namesake News
+      .jumbotron
+        h1.display-3 #{user.first_name}'s latest news
+        p.lead Just look at this unbelievable attraction
+      .row.marketing.feed
+      .loader
+        .windows8
+          #wBall_1.wBall
+            .wInnerBall
+          | &#x9;
+          #wBall_2.wBall
+            .wInnerBall
+          | &#x9;
+          #wBall_3.wBall
+            .wInnerBall
+          | &#x9;
+          #wBall_4.wBall
+            .wInnerBall
+          | &#x9;
+          #wBall_5.wBall
+            .wInnerBall
+
+      footer.footer
+        p &copy; Company 2014

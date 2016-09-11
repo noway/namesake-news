@@ -25,7 +25,7 @@ $(function () {
             $('.feed').highlight($('.my-name').val(), {
                 wordsOnly: true,
                 wordsBoundary: '[\\b\\W]',
-                caseSensitive: true
+                caseSensitive: false
             });
             state = 'ready';
             next += 10;

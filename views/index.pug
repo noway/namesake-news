@@ -1,14 +1,32 @@
+doctype html(lang='en')
 html(lang='en')
-
   head
     title Your name on the web &mdash; Namesake News
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
     link(rel='stylesheet', href="/bootstrap/dist/css/bootstrap.css")
-
+    link(rel='stylesheet', href="/css/core.css")
+    script(src="/jquery/dist/jquery.min.js")
+    script(src="/jquery-highlight/jquery.highlight.js")
+    script(src="/news.js" async=true)
   body
-    .jumbotron
-      h1.jumbotron-heading Namesake News
-      .jumbotron-body
-        p Find what's happening to the people with your name in news!
-        p 
-          a(href="/login/facebook") Log in with facebook
+    .container
+      .header.clearfix
+        nav
+          ul.nav.nav-pills.pull-xs-right
+            li.nav-item
+              a.nav-link(href='/news/') My News 
+            li.nav-item
+              a.nav-link.active(href='/') Home
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='/about') About
+        h3.text-muted Namesake News
+      .jumbotron
+        h1.display-3 Namesake News
+        p.lead Find what's happening to the people with your name in news!
+        p
+          a.btn.btn-lg.btn-success(href='/login', role='button') Log in with facebook
+      footer.footer
+        p &copy; Company 2014
